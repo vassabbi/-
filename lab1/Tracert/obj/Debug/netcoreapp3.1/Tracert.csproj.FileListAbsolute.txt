@@ -1,0 +1,13 @@
+C:\Users\vassabbi\OneDrive\Документы\GitHub\CSaN\Lab1\Tracert\bin\Debug\netcoreapp3.1\Tracert.exe
+C:\Users\vassabbi\OneDrive\Документы\GitHub\CSaN\Lab1\Tracert\bin\Debug\netcoreapp3.1\Tracert.deps.json
+C:\Users\vassabbi\OneDrive\Документы\GitHub\CSaN\Lab1\Tracert\bin\Debug\netcoreapp3.1\Tracert.runtimeconfig.json
+C:\Users\vassabbi\OneDrive\Документы\GitHub\CSaN\Lab1\Tracert\bin\Debug\netcoreapp3.1\Tracert.runtimeconfig.dev.json
+C:\Users\vassabbi\OneDrive\Документы\GitHub\CSaN\Lab1\Tracert\bin\Debug\netcoreapp3.1\Tracert.dll
+C:\Users\vassabbi\OneDrive\Документы\GitHub\CSaN\Lab1\Tracert\bin\Debug\netcoreapp3.1\Tracert.pdb
+C:\Users\vassabbi\OneDrive\Документы\GitHub\CSaN\Lab1\Tracert\obj\Debug\netcoreapp3.1\Tracert.csprojAssemblyReference.cache
+C:\Users\vassabbi\OneDrive\Документы\GitHub\CSaN\Lab1\Tracert\obj\Debug\netcoreapp3.1\Tracert.AssemblyInfoInputs.cache
+C:\Users\vassabbi\OneDrive\Документы\GitHub\CSaN\Lab1\Tracert\obj\Debug\netcoreapp3.1\Tracert.AssemblyInfo.cs
+C:\Users\vassabbi\OneDrive\Документы\GitHub\CSaN\Lab1\Tracert\obj\Debug\netcoreapp3.1\Tracert.csproj.CoreCompileInputs.cache
+C:\Users\vassabbi\OneDrive\Документы\GitHub\CSaN\Lab1\Tracert\obj\Debug\netcoreapp3.1\Tracert.dll
+C:\Users\vassabbi\OneDrive\Документы\GitHub\CSaN\Lab1\Tracert\obj\Debug\netcoreapp3.1\Tracert.pdb
+C:\Users\vassabbi\OneDrive\Документы\GitHub\CSaN\Lab1\Tracert\obj\Debug\netcoreapp3.1\Tracert.genruntimeconfig.cache
