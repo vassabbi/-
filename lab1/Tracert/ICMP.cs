@@ -11,17 +11,21 @@ namespace Tracert
         public UInt16 CheckSum;
         public int MessageSize;
         public byte[] Message = new byte[1024];
+        public const int indentType = 20;
+        public const int indentCode = 21;
+        public const int indentCheckSum = 22;
+        public const int indentData = 24;
 
         public ICMP()
         {
         }
         public ICMP(byte[] data, int size)
         {
-            Type = data[20];
-            Code = data[21];
-            CheckSum = BitConverter.ToUInt16(data, 22);
-            MessageSize = size - 24;
-            Buffer.BlockCopy(data, 24, Message, 0, MessageSize);
+            Type = data[indentType];
+            Code = data[indentCode];
+            CheckSum = BitConverter.ToUInt16(data, indentCheckSum);
+            MessageSize = size - indentData;
+            Buffer.BlockCopy(data, indentData, Message, 0, MessageSize);
         }
 
         public byte[] getBytes()

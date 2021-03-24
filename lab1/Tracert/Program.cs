@@ -12,43 +12,42 @@ namespace Tracert
             int recv = 0;
             byte[] data = new byte[1024];
             Console.WriteLine("Введите ip для доставки");
+            Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Raw, ProtocolType.Icmp);
             string ipAddress = Console.ReadLine();
-            //ipAddress = "142.250.186.46";
-            int port = 8765;
             try
             {
                 IPHostEntry ipHost = Dns.GetHostEntry(ipAddress);
                 IPAddress ipAddr = ipHost.AddressList[0];
-                IPEndPoint ipPoint = new IPEndPoint(ipAddr, port);
+                IPEndPoint ipPoint = new IPEndPoint(ipAddr, 0);
                 EndPoint eipPoint = ipPoint;
-                Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Raw, ProtocolType.Icmp);
                 Console.WriteLine("Трассировка маршрута к [" + ipAddress + "]");
-                Console.WriteLine("с максимальным числом прыжков 256");
+                Console.WriteLine("с максимальным числом прыжков 30");
+                int seqNumber = 1;
 
                 ICMP packet = new ICMP();
                 packet.Type = 8;
                 packet.Code = 0;
                 packet.CheckSum = 0;
                 Buffer.BlockCopy(BitConverter.GetBytes(1), 0, packet.Message, 0, 2);
-                Buffer.BlockCopy(BitConverter.GetBytes(1), 0, packet.Message, 2, 2);
+                Buffer.BlockCopy(BitConverter.GetBytes(seqNumber << 8), 0, packet.Message, 2, 2);
                 data = Encoding.ASCII.GetBytes("test packet");
                 Buffer.BlockCopy(data, 0, packet.Message, 4, data.Length);
                 packet.MessageSize = data.Length + 4;
                 int packetsize = packet.MessageSize + 4;
-                UInt16 chcksum = packet.getChecksum();
-                packet.CheckSum = chcksum;
+                packet.CheckSum = packet.getChecksum();
 
+                bool finishTracing = false;
                 socket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReceiveTimeout, 3000);
-
-                int badcount = 0;
-                for (int i = 1; i < 256; i++)
+                for (int i = 1; i <= 30; i++)
                 {
-                    bool finishTracing = false;
                     int badConnect = 0;
                     EndPoint ipNowAddress = eipPoint;
                     Console.Write("{0, 4}", i);
                     for (int j = 0; j < 3; j++)
                     {
+                        Buffer.BlockCopy(BitConverter.GetBytes(seqNumber << 8), 0, packet.Message, 2, 2);
+                        packet.CheckSum = 0;
+                        packet.CheckSum = packet.getChecksum();
                         socket.SetSocketOption(SocketOptionLevel.IP, SocketOptionName.IpTimeToLive, i);
                         socket.SendTo(packet.getBytes(), packetsize, SocketFlags.None, ipPoint);
 
@@ -74,6 +73,7 @@ namespace Tracert
                             Console.Write("{0, 9}", "*   ");
                             badConnect++;
                         }
+                        seqNumber++;
                     }
                     if (badConnect != 3)
                     {
@@ -89,12 +89,10 @@ namespace Tracert
                         {
                             Console.WriteLine("  [" + onlyipNowAddress + "]");
                         }
-                        badcount = 0;
                     }
                     else
                     {
                         Console.WriteLine("  Превышен интервал ожидания для запроса.");
-                        badcount++;
                     }
                     if (finishTracing)
                     {
@@ -103,17 +101,18 @@ namespace Tracert
                         Console.WriteLine();
                         break;
                     }
-                    if (badcount == 5)
-                    {
-                        Console.WriteLine();
-                        Console.WriteLine("Не удалось установить соединение");
-                        Console.WriteLine();
-                    }
+                }
+                if (!finishTracing)
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Соединение установить не удалось");
+                    Console.WriteLine();
                 }
                 socket.Close();
             }
             catch
             {
+                socket.Close();
                 Console.WriteLine("Неверно указан ip для доставки");
             }
         }
