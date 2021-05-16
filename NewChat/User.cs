@@ -14,7 +14,7 @@ namespace NewChat
 		public string Name { get; set; }
 		public IPAddress Ip { get; set; }
 
-		IPAddress remoteAddress;// = IPAddress.Parse("255.255.255.255");
+		IPAddress remoteAddress = IPAddress.Parse("255.255.255.255");
 		int remotePort = 8754;
 		UdpClient udpClient;
 
@@ -23,8 +23,7 @@ namespace NewChat
 		public User(string name)
 		{
 			Name = name;
-			var host = Dns.GetHostEntry(Dns.GetHostName());
-			Ip = host.AddressList[0];
+			Ip = IPAddress.Parse(NetInterfaces.Search());
 			Server = new Server(this);
 			SendName();
 			Thread sendMessageTread = new Thread(new ThreadStart(SendMessage));
@@ -54,7 +53,6 @@ namespace NewChat
 		void SendName()
 		{
 			udpClient = new UdpClient();
-			remoteAddress = IPAddress.Parse(NetInterfaces.Search());
 			IPEndPoint endPoint = new IPEndPoint(remoteAddress, remotePort);
 			udpClient.EnableBroadcast = true;
 			var udpMessage = Encoding.UTF8.GetBytes(Name);
