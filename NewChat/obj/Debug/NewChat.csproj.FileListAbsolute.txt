@@ -5,3 +5,10 @@ C:\Users\vassabbi\OneDrive\Документы\КСиС\NewChat\obj\Debug\NewChat
 C:\Users\vassabbi\OneDrive\Документы\КСиС\NewChat\obj\Debug\NewChat.csproj.CoreCompileInputs.cache
 C:\Users\vassabbi\OneDrive\Документы\КСиС\NewChat\obj\Debug\NewChat.exe
 C:\Users\vassabbi\OneDrive\Документы\КСиС\NewChat\obj\Debug\NewChat.pdb
+C:\Users\vassabbi\OneDrive\Документы\GitHub\CSaN\NewChat\bin\Debug\NewChat.exe.config
+C:\Users\vassabbi\OneDrive\Документы\GitHub\CSaN\NewChat\bin\Debug\NewChat.exe
+C:\Users\vassabbi\OneDrive\Документы\GitHub\CSaN\NewChat\bin\Debug\NewChat.pdb
+C:\Users\vassabbi\OneDrive\Документы\GitHub\CSaN\NewChat\obj\Debug\NewChat.csprojAssemblyReference.cache
+C:\Users\vassabbi\OneDrive\Документы\GitHub\CSaN\NewChat\obj\Debug\NewChat.csproj.CoreCompileInputs.cache
+C:\Users\vassabbi\OneDrive\Документы\GitHub\CSaN\NewChat\obj\Debug\NewChat.exe
+C:\Users\vassabbi\OneDrive\Документы\GitHub\CSaN\NewChat\obj\Debug\NewChat.pdb
