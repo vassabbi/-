@@ -110,11 +110,12 @@ namespace Lab5.Controllers
                 {
                     try
                     {
-                        var fileStream = new FileStream(fullPath, FileMode.Create);
-                        file.CopyToAsync(fileStream);
+                        var fileStream = new FileStream(fullPath + "/" + file.FileName, FileMode.Create);
+                        file.CopyTo(fileStream);
+                        fileStream.Close();
                         return Ok();
                     }
-                    catch
+                    catch (Exception e)
                     {
                         return BadRequest();
                     }
